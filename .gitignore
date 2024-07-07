@@ -34,3 +34,7 @@ lerna-debug.log*
 # migrations
 /migrations
 /drizzle
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
