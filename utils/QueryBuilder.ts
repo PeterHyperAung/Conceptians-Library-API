@@ -1,6 +1,6 @@
 import { db } from "../db/client";
 import { PgTable, PgTableWithColumns } from "drizzle-orm/pg-core";
-import { eq, lt, gt, gte, ne, lte, sql, desc, asc, like } from "drizzle-orm";
+import { eq, lt, gt, gte, ne, lte, sql, desc, asc, ilike } from "drizzle-orm";
 
 export class QueryBuilder {
   private query: any;
@@ -31,7 +31,7 @@ export class QueryBuilder {
 
   public whereLike(field: any, value: any): QueryBuilder {
     if (!field || !value) return this;
-    this.query = this.query.where(like(field, `%${value}%`));
+    this.query = this.query.where(ilike(field, `%${value}%`));
     return this;
   }
 
