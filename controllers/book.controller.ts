@@ -4,15 +4,25 @@ import type { BlankEnv, BlankInput } from "hono/types";
 import { Book } from "../db/schema";
 import { QueryBuilder } from "../utils/QueryBuilder";
 import { catchAsync } from "../utils/catchAsync";
+import { and, ilike } from "drizzle-orm";
 
 export const getBooks = catchAsync(
   async (c: Context<BlankEnv, "/books", BlankInput>) => {
-    const { page, category, title } = c.req.query();
+    let { page, category = "", title = "" } = c.req.query();
+
+    if (category.toLowerCase() === "all") {
+      category = "";
+    }
+
     const query = new QueryBuilder(Book);
 
     const books = await query
-      .whereLike(Book.Title, title)
-      .whereEq(Book.Category, category)
+      .where(
+        and(
+          ilike(Book.Title, `%${title}%`),
+          ilike(Book.Category, `%${category}`)
+        )
+      )
       .page(page)
       .build();
 

@@ -23,51 +23,9 @@ export class QueryBuilder {
     return this;
   }
 
-  public where(query: any): QueryBuilder {
-    if (!query) return this;
-    this.query = this.query.query(sql`${query}`);
-    return this;
-  }
-
-  public whereLike(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(ilike(field, `%${value}%`));
-    return this;
-  }
-
-  public whereEq(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(eq(field, value));
-    return this;
-  }
-
-  public whereLt(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(lt(field, value));
-    return this;
-  }
-
-  public whereLte(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(lte(field, value));
-    return this;
-  }
-
-  public whereGt(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(gt(field, value));
-    return this;
-  }
-
-  public whereGte(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(gte(field, value));
-    return this;
-  }
-
-  public whereNe(field: any, value: any): QueryBuilder {
-    if (!field || !value) return this;
-    this.query = this.query.where(ne(field, value));
+  public where(...q: any): QueryBuilder {
+    if (q.length === 0) return this;
+    this.query = this.query.where(...q);
     return this;
   }
 
