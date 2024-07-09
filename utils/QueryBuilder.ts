@@ -19,7 +19,7 @@ export class QueryBuilder {
     if (!n) {
       return this;
     }
-    this.query = this.query.offset((Number(n) - 1) * this.limit);
+    this.query = this.query.offset(Number(n) * this.limit);
     return this;
   }
 
