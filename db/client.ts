@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
-dotenv.config();
+import { config } from "dotenv";
+config();
 
 import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
 
 const sql = neon(process.env.DB_URL);
-export const db = drizzle(sql);
+export const db: NeonHttpDatabase = drizzle(sql);

@@ -19,7 +19,7 @@ const app = new Hono();
 app.use(
   "/*",
   cors({
-    origin: process.env.CORS_LIST.split(","),
+    origin: process.env.CORS_LIST.split(",") || "*",
     allowHeaders: ["X-Custom-Header", "Upgrade-Insecure-Requests"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     maxAge: 600,
@@ -29,7 +29,7 @@ app.use(
 
 app.get("/books", getBooks);
 
-const port = 3000;
+const port = parseInt(process.env.PORT) || 3000;
 console.log(`Server is running on port ${port}`);
 
 serve({

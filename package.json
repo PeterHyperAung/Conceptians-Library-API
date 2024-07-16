@@ -5,7 +5,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "cdk": "cdk",
-    "prod:start": "node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
     "introspect": "drizzle-kit introspect"
@@ -25,7 +25,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.14.10",
     "@types/pg": "^8.11.6",
     "aws-cdk": "2.148.0",
     "drizzle-kit": "^0.22.8",
